@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hediye Kartı</title>
+    <style>
+        /* Sayfayı tam ortalamak için temel CSS */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Taşmayı engelle */
+        }
+        
+        /* Ekranlar için genel stil */
+        .screen {
+            position: fixed; /* Ekranları sabit konumlandır */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5; /* Arka plan rengi */
+            transition: opacity 0.5s ease;
+        }
+        
+        /* Ekranı gizlemek için kullanılacak sınıf */
+        .hidden {
+            opacity: 0;
+            visibility: hidden; /* Ekranı tamamen görünmez yap */
+            pointer-events: none; /* Tıklanmasını tamamen engelle */
+        }
+
+        /* Görselin kapsayıcısı, ortada kalması için */
+        .image-container {
+            max-width: 600px; /* Maksimum genişlik */
+            width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
+            cursor: pointer; /* Tıklanabilir olduğunu göstermek için */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background-color: white; /* Arka plan rengi */
+            text-align: center;
+        }
+
+        /* Görseli kapsayıcı içinde sığdırma */
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="main-image-screen" class="screen">
+        <div class="image-container">
+            <img src="apple_gift_card.png.png" alt="Hediyeyi açmak için tıklayın">
+        </div>
+    </div>
+
+    <div id="gif-screen" class="screen hidden">
+        <div class="image-container">
+            <img src="bekleme.gif" alt="Yükleniyor...">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mainImageScreen = document.getElementById('main-image-screen');
+            const gifScreen = document.getElementById('gif-screen');
+            const imageContainer = document.querySelector('#main-image-screen .image-container');
+            
+            // Görselin kapsayıcısına tıklama olayını dinle
+            imageContainer.addEventListener('click', () => {
+                // Ana ekranı gizle
+                mainImageScreen.classList.add('hidden');
+                
+                // GIF ekranını göster
+                gifScreen.classList.remove('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
